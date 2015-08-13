@@ -1,0 +1,5 @@
+Spark was installed in <%= node['df_spark']['local_dir'] %>
+
+Spark will not work without first running mvn -DskipTests clean package which can be done by running './compileSpark.sh' in this same directory. First run 'mvn -version' to make sure maven is running properly, if not, and if this is the first time the VM has been started in a Chef run, you may first need to restart the VM.
+
+This compile is an extremely long compile. Come back in a couple weeks, it may be done by then.
