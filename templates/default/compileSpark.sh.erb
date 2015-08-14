@@ -1,4 +1,4 @@
-mv <%= node['df_spark']['local_dir'] %><%= node['df_spark']['tar_name'] %> .
+sudo mv <%= node['df_spark']['local_dir'] %><%= node['df_spark']['tar_name'] %> .
 tar -xzvf <%= node['df_spark']['tar_name'] %>
 cd <%= node['df_spark']['name'] %>
 mvn -DskipTests clean package
