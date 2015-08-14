@@ -1,2 +1,4 @@
-cd /usr/local/spark
+mv <%= node['df_spark']['local_dir'] %><%= node['df_spark']['name'] %> .
+tar -xzvf <%= node['df_spark']['name'] %>
+cd <%= node['df_spark']['name'] %>
 mvn -DskipTests clean package
