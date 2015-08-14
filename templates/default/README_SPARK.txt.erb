@@ -1,5 +1,19 @@
-Spark was installed in <%= node['df_spark']['local_dir'] %>
+Spark source code was installed in '<%= node['df_spark']['local_dir'] %>', yet spark is completely un-usable as it first has to be compiled into a working binary, as well as installing all the relevant dependencies into the maven repository.
 
-Spark will not work without first running mvn -DskipTests clean package which can be done by running './compileSpark.sh' in this same directory. First run 'mvn -version' to make sure maven is running properly, if not, and if this is the first time the VM has been started in a Chef run, you may first need to restart the VM.
+You may wish to read this carefully, as there are some minefields you may wish to dodge. Or at least, that is the conclusion I came to.
 
-This compile is an extremely long compile. Come back in a couple weeks, it may be done by then.
+The short version is this:
+- run './compileSpark.sh' TO A SUCCESSFUL CONCLUSION!!!
+- run 'moveSparkToUsrLocal.sh' 
+
+MINEFIELDS TO DODGE:
+- the './compileSpark.sh' may take several attempts! 
+- you have to actually read "BUILD SUCCESSFUL" in the last few lines of the output to consider the run successful
+- you may also have shut down the VM, increase memory, and run again.
+- even if successful, it may take forevvvvvvvver to finish. It is probably memory bound, but I just waited my builds out and they eventually ran to completion. You can always increase the memory allocated to maven in the shell command if you have enough memory allocated in the VM itself
+- ONLY if the build is successful, then you can run 'moveSparkToUsrLocal.sh'
+
+Hopefully this will help you get past the bumps easily enough.
+
+For the next steps, go to http://spark.apache.org/docs/latest/
+This README was written for spark <%= node['df_spark']['version'] %>, if the documentation has changed since that version then you will not be properly supported by reading that doc.

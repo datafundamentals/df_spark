@@ -28,6 +28,12 @@ template '/home/vagrant/compileSpark.sh' do
   only_if { ::File.exists?('/home/vagrant') }
 end
 
+template '/home/vagrant/moveSparkToUsrLocal.sh' do 
+  source 'moveSparkToUsrLocal.sh.erb'
+  mode "0777"
+  only_if { ::File.exists?('/home/vagrant') }
+end
+
 directory node['df_spark']['local_dir'] do 
     mode "0755"
     recursive true
